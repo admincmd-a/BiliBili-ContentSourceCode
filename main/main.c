@@ -8,7 +8,7 @@ const char *help = "持续申请内存\n"
 "警示：运行这个程序将导致你的系统逐渐耗尽可用内存，最终可能发生内存泄漏，导致系统不稳定或崩溃。因此，请在安全的测试环境中运行，并确保可以随时中止程序或关闭环境。\n"
 "\n"
 "用法：\n"
-"    ramleaker [/help | /ram <大小> | /count <次数> | /sleep <时间> | /e_exit]\n"
+"    ramleaker [ /help | /ram <大小> | /count <次数> | /sleep <时间> | /e_exit | /about]\n"
 "\n"
 "选项：\n"
 "\n"
@@ -18,6 +18,7 @@ const char *help = "持续申请内存\n"
 "   /count <次数> 设置循环申请内存的次数，若未指定，为无限循环\n"
 "   /sleep <时间> 设置每次申请内存后暂停的时间，单位为秒，若未指定，为1秒\n"
 "   /e_exit 在内存分配失败时退出程序\n"
+"   /about 打印关于信息\n"
 "\n"
 "\n"
 "为保安全，您应至少指定一个参数，否则将打印帮助信息。\n"
@@ -29,7 +30,22 @@ const char *help = "持续申请内存\n"
 "    ramleaker /count 1000\n"
 "    ramleaker /sleep 2 /e_exit\n"
 "    ramleaker /ram 10 /count 1000 /sleep 2\n"
-"\n\nabababababababababa,FBI WARNNNNNNNNNBYNADMIN-CMDDDDDDDDDDDDDamlCC-BA-NS-SA4.0klklhttps://github.com/admincmd-a/ramleaker/ [ddddddddddddhttp://admincmd.xyz/ ddddddd]-klklklurl:hklklklklklklklk,sc,China,Chinese MADE IN CHINA,ssssAA HUBEI.ING 群体目光向往看起，看我看我，我巡捕格式，我是诗歌";
+"\n\nabababababababababa,FBI WARNNNNNNNNNBYNADMIN-CMDDDDDDDDDDDDDamlCC-BA-NS-SA4.0klklhttps://github.com/admincmd-a/BiliBili-ContentSourceCode/tree/ramleaker [ddddddddddddhttp://admincmd.xyz/ ddddddd]-klklklurl:hklklklklklklklk,sc,China,Chinese MADE IN CHINA,ssssAA HUBEI.ING 群体目光向往看起，看我看我，我巡捕格式，我是诗歌";
+;
+
+const char *about = 
+"ramleaker 是一个持续申请内存的程序，用于测试系统的内存泄漏的测试程序。\n"
+"Copyright (C) 2021-2025 管理员 - 命令提示符(Admincmd)\n"
+"Github: https://github.com/admincmd-a/BiliBili-ContentSourceCode/tree/ramleaker\n"
+"=================================================================\n"
+"主要开发者：\n"
+"----- 管理员 - 命令提示符(Admincmd)\n"
+"---------- Github: https://github.com/admincmd-a\n"
+"---------- BiliBili: https://space.bilibili.com/518747636\n"
+"=================================================================\n"
+"免责声明：\n"
+"----- 用户因使用ramleaker而产生的一切后果由用户自行承担，任何涉及ramleaker的法律纠纷与冲突与开发者无关，ramleaker与开发者将不承担任何责任。\n"
+"\n"
 ;
 /*
 "Continuous memory requests lead to memory leaks\n"
@@ -73,6 +89,9 @@ int main(int argc, char *argv[]) {
         if (strcmp(argv[i], "/help") == 0) {
             printf("%s\n", help);
             return 0;// 第2串是不是帮助参数
+        } else if (strcmp(argv[i], "/about") == 0) {
+            printf("%s\n", about);
+            return 0;
         } else if (strcmp(argv[i], "/ram") == 0) {// 检查是否是RAM参数
             if (i + 1 < argc) {
                 ram = atoi(argv[i + 1]); // 成功则赋值
